@@ -1,0 +1,185 @@
+﻿<mui:MetroWindow 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"  
+    xmlns:mui="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+    xmlns:controls="clr-namespace:MasterMachineSystem.Controls"
+    x:Class="MasterMachineSystem.MainWindow"
+    Style="{StaticResource MUIWindow}" Icon="icon/soft.ico"
+    Title="Universal Master Machine System" Height="680.667" Width="868.333">
+    <mui:MetroWindow.RightWindowCommands>
+        <mui:WindowCommands>
+            <Button Content="联系我们"/>
+        </mui:WindowCommands>
+    </mui:MetroWindow.RightWindowCommands>
+    <Grid>
+        <Menu HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,0,0,0">
+            <MenuItem Header="文件">
+                <MenuItem Header="新建">
+                    <MenuItem Header="测试计划"/>
+                </MenuItem>
+                <MenuItem Header="打开"/>
+                <Separator></Separator>
+                <MenuItem Header="关闭"/>
+                <Separator></Separator>
+                <MenuItem Header="保存"/>
+                <MenuItem Header="另存为"/>
+                <Separator></Separator>
+                <MenuItem Header="打印"/>
+                <Separator></Separator>
+                <MenuItem Header="退出"/>
+            </MenuItem>
+            <MenuItem Header="连接">
+                <MenuItem x:Name="menConfig" Header="配置..." Click="Config">
+                    <MenuItem.Icon>
+                        <Image Source="icon/menu_config.ico"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator></Separator>
+                <MenuItem x:Name="menConnect" Header="连接"/>
+                <MenuItem x:Name="menListen" Header="开始监听"/>
+            </MenuItem>
+            <MenuItem Header="数据">
+                <MenuItem Header="记录">
+                    <MenuItem Header="新增"/>
+                    <MenuItem Header="查看"/>
+                    <MenuItem Header="删除"/>
+                    <Separator></Separator>
+                    <MenuItem Header="导入"/>
+                    <MenuItem Header="导出"/>
+                </MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="生成图表">
+                    <MenuItem Header="当前记录"/>
+                    <MenuItem Header="所有记录"/>
+                    <Separator></Separator>
+                    <MenuItem Header="指定记录"/>
+                </MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="查看报告"/>
+            </MenuItem>
+            <MenuItem  Header="选项">
+                <MenuItem Header="设置"/>
+            </MenuItem>
+            <MenuItem Header="帮助">
+                <MenuItem Header="查看帮助"/>
+                <Separator></Separator>
+                <MenuItem Header="关于..."/>
+            </MenuItem>
+        </Menu>
+        <Grid HorizontalAlignment="Left" Margin="5,25,0,0" VerticalAlignment="Top">
+            <Button x:Name="btnCreateProject"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Height="70"  Margin="0,0,0,0"
+                    Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="新建测试计划" Click="CreateProject">
+                <Image x:Name="imgBtnCreate" Source="icon\toolbar_create.ico" />
+            </Button>
+            <Button x:Name="btnOpenProject"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Height="70"  Margin="70,0,0,0"
+                    Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="打开测试计划" Click="OpenProject">
+                <Image x:Name="imgBtnOpen" Source="icon\toolbar_open.ico" />
+            </Button>
+            <Button x:Name="btnConfig"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Height="70"  Margin="140,0,0,0"
+                    Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="配置连接信息" Click="Config">
+                <Image x:Name="imgBtnConfig" Source="icon\toolbar_config.ico" />
+            </Button>
+            <Button x:Name="btnConnect"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Height="70" Margin="210,0,0,0" 
+                    Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="连接" Click="Connect">
+                <Image x:Name="imgBtnConnect" Source="icon/toolbar_connect.ico" />
+            </Button>
+            <Button x:Name="btnListen"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Height="70" Margin="280,0,0,0" 
+                    Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="开始监听" Click="Listen">
+                <Image x:Name="imgBtnListen" Source="icon/toolbar_start_listening.ico" />
+            </Button>
+            <ToggleButton x:Name="btnChart"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Height="70" Margin="350,0,0,0" 
+                    Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="生成图表">
+                <Image x:Name="imgBtnChart" Source="icon/toolbar_chart.ico" />
+            </ToggleButton>
+            <Button x:Name="btnReport"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Height="70" Margin="420,0,0,0" 
+                    Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="查看报告">
+                <Image x:Name="imgBtnReport" Source="icon/toolbar_report.ico" />
+            </Button>
+            <Button x:Name="btnClear"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Height="70" Margin="490,0,0,0" 
+                    Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="删除记录">
+                <Image x:Name="imgBtnClear" Source="icon/toolbar_delete.ico" />
+            </Button>
+            <Button x:Name="btnImport"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Height="70" Margin="560,0,0,0" 
+                    Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="导入">
+                <Image x:Name="imgBtnImport" Source="icon/toolbar_import.ico" />
+            </Button>
+            <Button x:Name="btnExport"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Height="70" Margin="630,0,0,0" 
+                    Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="导出">
+                <Image x:Name="imgBtnExport" Source="icon/toolbar_export.ico" />
+            </Button>
+            <Button x:Name="btnSetting"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Height="70" Margin="700,0,0,0" 
+                    Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="设置">
+                <Image x:Name="imgBtnSetting" Source="icon/toolbar_setting.ico" />
+            </Button>
+            <Button x:Name="btnClose"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Height="70" Margin="770,0,0,0" 
+                    Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="退出">
+                <Image x:Name="imgBtnClose" Source="icon/toolbar_close.ico" />
+            </Button>
+        </Grid>
+        <GroupBox Header="简单数据交互" HorizontalAlignment="Left" Height="288" Margin="5,357,0,0" VerticalAlignment="Top" Width="230">
+            <Grid HorizontalAlignment="Left" Height="237" VerticalAlignment="Top" Width="220" Margin="0,0,-2,-2">
+                <GroupBox Header="数据接收" HorizontalAlignment="Left" Height="149" VerticalAlignment="Top" Width="218" Margin="0">
+                    <TextBox x:Name="txtSimpleReceived" HorizontalAlignment="Left" Width="206" Height="112" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,0,-2,-2"/>
+                </GroupBox>
+                <GroupBox Header="数据发送" HorizontalAlignment="Left" Height="77" Margin="0,174,0,-14" VerticalAlignment="Top" Width="218">
+                    <Grid HorizontalAlignment="Left" Height="55" Margin="0,-11,-2,-5" VerticalAlignment="Top" Width="208">
+                        <TextBox x:Name="txtSimpleSend" HorizontalAlignment="Left" Height="40" Margin="0,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="181"/>
+                        <Button x:Name="btnSimpleSend" HorizontalAlignment="Left" Margin="186,8,0,0" VerticalAlignment="Top" Width="20" Height="20"
+                            Style="{StaticResource CustomButton}" Click="SimpleSend">
+                            <Image Source="icon/simple_send.ico"/>
+                        </Button>
+                        <Button x:Name="btnSimpleSendConfig" HorizontalAlignment="Left" Margin="186,30,0,0" VerticalAlignment="Top" Width="20" Height="20"
+                            Style="{StaticResource CustomButton}">
+                            <Image Source="icon/simple_config.ico"/>
+                        </Button>
+                    </Grid>
+                </GroupBox>
+                <CheckBox x:Name="chkSimpleReceived" Content="启用简单数据接收窗口" HorizontalAlignment="Left" Margin="0,152,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.129,1.867"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="测试计划" HorizontalAlignment="Left" Height="100" Margin="5,99,0,0" VerticalAlignment="Top" Width="230">
+            <Grid HorizontalAlignment="Left" Height="65" Margin="0,0,-2,0" VerticalAlignment="Top" Width="220">
+                <ComboBox x:Name="cbPlanList" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200"
+                          ItemsSource="{Binding LocationSource,Mode=OneWay}"
+                          SelectedValuePath="guid"
+                          DisplayMemberPath="PlanName"
+                          SelectedItem="{Binding _PlanInfoArray}"
+                          SelectionChanged="SelectPlan"/>
+                <Button x:Name="btnPlanAdd" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" Width="20" Height="20"
+                        Style="{StaticResource CustomButton}" Click="PlanAdd">
+                    <Image Source="icon\plan_add.ico"/>
+                </Button>
+                <Button x:Name="btnPlanDelete" HorizontalAlignment="Left" Margin="30,36,0,0" VerticalAlignment="Top" Width="20" Height="20"
+                    Style="{StaticResource ResourceKey=CustomButton}" Click="PlanDelete">
+                    <Image Source="icon/plan_delete.ico"/>
+                </Button>
+                <Button x:Name="btnPlanView" HorizontalAlignment="Left" Margin="50,36,0,0" VerticalAlignment="Top" Width="20" Height="20"
+                    Style="{StaticResource ResourceKey=CustomButton}">
+                    <Image Source="icon/plan_view.ico"/>
+                </Button>
+                <Button x:Name="btnPlanImport" HorizontalAlignment="Left" Margin="70,36,0,0" VerticalAlignment="Top" Width="20" Height="20"
+                    Style="{StaticResource ResourceKey=CustomButton}">
+                    <Image Source="icon/plan_import.ico"/>
+                </Button>
+                <Button x:Name="btnPlanExport" HorizontalAlignment="Left" Margin="90,36,0,0" VerticalAlignment="Top" Width="20" Height="20"
+                    Style="{StaticResource ResourceKey=CustomButton}">
+                    <Image Source="icon/plan_export.ico"/>
+                </Button>
+                <ToggleButton x:Name="btnPlanBuildChart" HorizontalAlignment="Left" Margin="110,36,0,0" VerticalAlignment="Top" Width="20" Height="20"
+                    Style="{StaticResource ResourceKey=CustomToggleButton}">
+                    <Image Source="icon/plan_build_chart.ico"/>
+                </ToggleButton>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="数据帧" HorizontalAlignment="Left" Height="144" Margin="5,204,0,0" VerticalAlignment="Top" Width="230">
+            <Grid HorizontalAlignment="Left" Height="107" VerticalAlignment="Top" Width="220" Margin="0,0,-2,-1">
+                <ListBox x:Name="lstReceiveFrameList" HorizontalAlignment="Left" Height="107" VerticalAlignment="Top" Width="218"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="图表" HorizontalAlignment="Left" Height="546" Margin="240,99,0,0" VerticalAlignment="Top" Width="617">
+            <Grid>
+                <controls:MyLiveChart/>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</mui:MetroWindow>  

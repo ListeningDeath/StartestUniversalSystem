@@ -1,0 +1,43 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mui="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                    x:Class="MasterMachineSystem.Style.Custom">
+
+    <!-- 通用窗口样式 -->
+    <Style x:Key="MUIWindow" TargetType="mui:MetroWindow">
+        <Setter Property="ShowIconOnTitleBar" Value="True"/>
+        
+    </Style>
+
+    <!-- 通用对话框样式 -->
+    <Style x:Key="MUIDialog" TargetType="mui:MetroWindow">
+        <Setter Property="ShowIconOnTitleBar" Value="False"/>
+        <Setter Property="ShowMinButton" Value="False"/>
+        <Setter Property="ShowMaxRestoreButton" Value="False"/>
+        <Setter Property="ResizeMode" Value="NoResize"/>
+    </Style>
+
+    <!--默认Button样式-->
+    <Style x:Key="CustomButton" TargetType="{x:Type Button}">
+        <Setter Property="BorderBrush" Value="{x:Null}"/>
+        <Setter Property="Background" Value="{x:Null}"/>
+        <Style.Triggers>
+            <Trigger  Property="IsPressed" Value="True">
+
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--默认ToggleButton样式-->
+    <Style x:Key="CustomToggleButton" TargetType="{x:Type ToggleButton}">
+        <Setter Property="Background" Value="{x:Null}"/>
+        <Setter Property="BorderBrush" Value="{x:Null}"/>
+    </Style>
+
+    <!--默认Combobox样式-->
+    <Style x:Key="CustomCombobox" TargetType="{x:Type ComboBox}">
+        <Setter Property="Background" Value="{x:Null}"/>
+        <Setter Property="BorderBrush" Value="{x:Null}"/>
+    </Style>
+
+</ResourceDictionary>  
