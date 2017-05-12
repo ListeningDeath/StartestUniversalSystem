@@ -245,6 +245,8 @@
   <ItemGroup>
     <Resource Include="Icon\soft.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Icon\toolbar_reset.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
