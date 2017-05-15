@@ -51,6 +51,7 @@ namespace MasterMachineSystem
         }
 
         // 全局变量
+        private Ini _InitializationFile;  // 全局配置文件
         private TestProject _TestProject;  // 全局测试项目
         private TestPlans _TestPlans = new TestPlans();  // 全局测试计划组
         private TestPlan _TestPlan;  // 当前测试计划
@@ -64,18 +65,6 @@ namespace MasterMachineSystem
         public MainWindow()
         {
             InitializeComponent();
-            if (!ConfigInitialize())
-            {
-                // 初始化失败，程序退出
-                MsgErr.Show("配置文件初始化失败!");
-                Close();
-            }
-            if (!BootInitialize())
-            {
-                // 初始化失败，程序退出
-                MsgErr.Show("程序初始化失败!");
-                Close();
-            }
         }
         private void CheckStatus()  // 检查当前状态
         {
@@ -117,20 +106,20 @@ namespace MasterMachineSystem
                 {
                     btnConnect.IsEnabled = true;
                     btnConnect.ToolTip = "连接";
-                    imgBtnConnect.Source = new BitmapImage(new Uri("icon/toolbar_connect.ico", UriKind.Relative));
+                    imgBtnConnect.Source = new BitmapImage(new Uri("Images/toolbar_connect.ico", UriKind.Relative));
                 }
                 else if (_Connect_Status == CONNECT_STATUS.Connected || _Connect_Status == CONNECT_STATUS.Listening)
                 {
                     btnConnect.IsEnabled = true;
                     btnConnect.ToolTip = "断开连接";
-                    imgBtnConnect.Source = new BitmapImage(new Uri("icon/toolbar_disconnect.ico", UriKind.Relative));
+                    imgBtnConnect.Source = new BitmapImage(new Uri("Images/toolbar_disconnect.ico", UriKind.Relative));
                 }
             }
             else
             {
                 btnConnect.IsEnabled = false;
                 btnConnect.ToolTip = "连接";
-                imgBtnConnect.Source = new BitmapImage(new Uri("icon/toolbar_connect.ico", UriKind.Relative));
+                imgBtnConnect.Source = new BitmapImage(new Uri("Images/toolbar_connect.ico", UriKind.Relative));
             }
             if (_Project_Status == PROJECT_STATUS.Entire)  // 监听
             {
@@ -138,26 +127,26 @@ namespace MasterMachineSystem
                 {
                     btnListen.IsEnabled = false;
                     btnListen.ToolTip = "开始监听";
-                    imgBtnListen.Source = new BitmapImage(new Uri("icon/toolbar_start_listening.ico", UriKind.Relative));
+                    imgBtnListen.Source = new BitmapImage(new Uri("Images/toolbar_start_listening.ico", UriKind.Relative));
                 }
                 else if (_Connect_Status == CONNECT_STATUS.Connected)
                 {
                     btnListen.IsEnabled = true;
                     btnListen.ToolTip = "开始监听";
-                    imgBtnListen.Source = new BitmapImage(new Uri("icon/toolbar_start_listening.ico", UriKind.Relative));
+                    imgBtnListen.Source = new BitmapImage(new Uri("Images/toolbar_start_listening.ico", UriKind.Relative));
                 }
                 else if (_Connect_Status == CONNECT_STATUS.Listening)
                 {
                     btnListen.IsEnabled = true;
                     btnListen.ToolTip = "结束监听";
-                    imgBtnListen.Source = new BitmapImage(new Uri("icon/toolbar_stop_listening.ico", UriKind.Relative));
+                    imgBtnListen.Source = new BitmapImage(new Uri("Images/toolbar_stop_listening.ico", UriKind.Relative));
                 }
             }
             else
             {
                 btnListen.IsEnabled = false;
                 btnListen.ToolTip = "开始监听";
-                imgBtnListen.Source = new BitmapImage(new Uri("icon/toolbar_start_listening.ico", UriKind.Relative));
+                imgBtnListen.Source = new BitmapImage(new Uri("Images/toolbar_start_listening.ico", UriKind.Relative));
             }
             if (_Project_Status == PROJECT_STATUS.PlanOnly || _Project_Status == PROJECT_STATUS.Entire)  // 图表
             {
@@ -273,15 +262,15 @@ namespace MasterMachineSystem
         private bool ConfigInitialize()
         {
             string ConfigFilePath = AppDomain.CurrentDomain.BaseDirectory + "config.ini";
-            INI _INI = new INI(ConfigFilePath);
+            _InitializationFile = new Ini(ConfigFilePath);
             // 如果没有系统配置文件，则生成默认配置文件
             if (!File.Exists(ConfigFilePath))
             {
-                _INI.WriteDefault();
+                _InitializationFile.WriteDefault();
             }
             // 读取系统配置文件
             
-            FrameDataLength = int.Parse(_INI.Read("FRAME", "LENGTH"));
+            FrameDataLength = int.Parse(_InitializationFile.Read("FRAME", "LENGTH"));
             return true;
         }
         private bool BootInitialize()  // 启动初始化
@@ -361,8 +350,21 @@ namespace MasterMachineSystem
                 }
             }
         }
-
-
+        private void Load(object sender, RoutedEventArgs e)  // 页面载入
+        {
+            if (!ConfigInitialize())
+            {
+                // 初始化失败，程序退出
+                MsgErr.Show("配置文件初始化失败!");
+                Close();
+            }
+            if (!BootInitialize())
+            {
+                // 初始化失败，程序退出
+                MsgErr.Show("程序初始化失败!");
+                Close();
+            }
+        }
         private void CreateProject(object sender, RoutedEventArgs e)  // 新建项目
         {
             CreateProjectWindow _CreateProjectWindow = new CreateProjectWindow();
@@ -383,32 +385,34 @@ namespace MasterMachineSystem
         }
         private void Config(object sender, RoutedEventArgs e)  // 配置连接
         {
-            ConfigWindow _ConfigWindow = new ConfigWindow();
+            ConfigWindow _ConfigWindow;
+            _ConfigWindow = new ConfigWindow(_InitializationFile, _TestProject._Comm);
             _ConfigWindow.ShowDialog();
             if (_ConfigWindow.IsOK)
             {
-                switch (_ConfigWindow._CommType)
-                {
-                    case CommType.COMM_TYPE_SERIAL_PORT:
-                        // 通信接口串口实例化
-                        _TestProject._Comm = new SerialPortComm(
-                            _ConfigWindow.cbSPPort.SelectedValue.ToString(),
-                            Convert.ToInt32(_ConfigWindow.cbSPBaudRate.SelectedValue),
-                            _ConfigWindow.cbSPParity.SelectedValue.ToString(),
-                            Convert.ToChar(_ConfigWindow.cbSPDataBits.SelectedValue),
-                            _ConfigWindow.cbSPStopBits.SelectedValue.ToString());
-                        break;
-                    case CommType.COMM_TYPE_ETHERNET:
-                        // 通信接口以太网实例化
-                        _TestProject._Comm = new EthernetComm(
-                            _ConfigWindow.txtEthIP.Text, 
-                            int.Parse(_ConfigWindow.txtEthPort.Text), 
-                            (EthernetType)_ConfigWindow.cbEthProtocol.SelectedIndex);
-                        break;
-                    case CommType.COMM_TYPE_USB:
-                        // 通信接口USB实例化
-                        break;
-                }
+                _TestProject._Comm = _ConfigWindow._Comm;
+                //switch (_ConfigWindow._CommType)
+                //{
+                //    case CommType.COMM_TYPE_SERIAL_PORT:
+                //        // 通信接口串口实例化
+                //        _TestProject._Comm = new SerialPortComm(
+                //            _ConfigWindow.cbSPPort.SelectedValue.ToString(),
+                //            int.Parse(_ConfigWindow.cbSPBaudRate.SelectedValue.ToString()),
+                //            _ConfigWindow.cbSPParity.SelectedValue.ToString(),
+                //            ushort.Parse(_ConfigWindow.cbSPDataBits.SelectedValue.ToString()),
+                //            _ConfigWindow.cbSPStopBits.SelectedValue.ToString());
+                //        break;
+                //    case CommType.COMM_TYPE_ETHERNET:
+                //        // 通信接口以太网实例化
+                //        _TestProject._Comm = new EthernetComm(
+                //            _ConfigWindow.txtEthIP.Text, 
+                //            int.Parse(_ConfigWindow.txtEthPort.Text), 
+                //            (EthernetType)_ConfigWindow.cbEthProtocol.SelectedIndex);
+                //        break;
+                //    case CommType.COMM_TYPE_USB:
+                //        // 通信接口USB实例化
+                //        break;
+                //}
                 if (_Project_Status == PROJECT_STATUS.Empty)
                 {
                     ChangeUI(PROJECT_STATUS.ConfigOnly);

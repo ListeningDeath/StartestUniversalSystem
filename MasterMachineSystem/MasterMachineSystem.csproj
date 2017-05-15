@@ -115,6 +115,7 @@
     <Compile Include="Module\Report.cs" />
     <Compile Include="Module\Sundry.cs" />
     <Compile Include="Module\SystemSettings.cs" />
+    <Compile Include="Controls\Extend.cs" />
     <Compile Include="PlanAddWindow.xaml.cs">
       <DependentUpon>PlanAddWindow.xaml</DependentUpon>
     </Compile>
@@ -175,6 +176,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -186,49 +188,49 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icon\simple_send.ico" />
+    <Resource Include="Images\simple_send.ico" />
     <Resource Include="soft.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icon\simple_config.ico" />
+    <Resource Include="Images\simple_config.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icon\toolbar_delete.ico" />
+    <Resource Include="Images\toolbar_delete.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icon\toolbar_chart.ico" />
-    <Resource Include="Icon\toolbar_create.ico" />
-    <Resource Include="Icon\toolbar_open.ico" />
-    <Resource Include="Icon\toolbar_save.ico" />
+    <Resource Include="Images\toolbar_chart.ico" />
+    <Resource Include="Images\toolbar_create.ico" />
+    <Resource Include="Images\toolbar_open.ico" />
+    <Resource Include="Images\toolbar_save.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icon\toolbar_close.ico" />
-    <Resource Include="Icon\toolbar_config.ico" />
-    <Resource Include="Icon\toolbar_connect.ico" />
-    <Resource Include="Icon\toolbar_disconnect.ico" />
-    <Resource Include="Icon\toolbar_export.ico" />
-    <Resource Include="Icon\toolbar_import.ico" />
-    <Resource Include="Icon\toolbar_print.ico" />
-    <Resource Include="Icon\toolbar_report.ico" />
-    <Resource Include="Icon\toolbar_setting.ico" />
+    <Resource Include="Images\toolbar_close.ico" />
+    <Resource Include="Images\toolbar_config.ico" />
+    <Resource Include="Images\toolbar_connect.ico" />
+    <Resource Include="Images\toolbar_disconnect.ico" />
+    <Resource Include="Images\toolbar_export.ico" />
+    <Resource Include="Images\toolbar_import.ico" />
+    <Resource Include="Images\toolbar_print.ico" />
+    <Resource Include="Images\toolbar_report.ico" />
+    <Resource Include="Images\toolbar_setting.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icon\toolbar_start_listening.ico" />
-    <Resource Include="Icon\toolbar_stop_listening.ico" />
+    <Resource Include="Images\toolbar_start_listening.ico" />
+    <Resource Include="Images\toolbar_stop_listening.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icon\menu_config.ico" />
+    <Resource Include="Images\menu_config.ico" />
   </ItemGroup>
   <ItemGroup>
-    <SplashScreen Include="Icon\Welcome.png" />
+    <SplashScreen Include="Images\Welcome.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icon\plan_add.ico" />
-    <Resource Include="Icon\plan_build_chart.ico" />
-    <Resource Include="Icon\plan_delete.ico" />
-    <Resource Include="Icon\plan_export.ico" />
-    <Resource Include="Icon\plan_import.ico" />
-    <Resource Include="Icon\plan_view.ico" />
+    <Resource Include="Images\plan_add.ico" />
+    <Resource Include="Images\plan_build_chart.ico" />
+    <Resource Include="Images\plan_delete.ico" />
+    <Resource Include="Images\plan_export.ico" />
+    <Resource Include="Images\plan_import.ico" />
+    <Resource Include="Images\plan_view.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
@@ -243,10 +245,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icon\soft.ico" />
+    <Resource Include="Images\icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icon\toolbar_reset.ico" />
+    <Resource Include="Images\toolbar_reset.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UI\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -4,8 +4,9 @@
     xmlns:mui="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
     xmlns:controls="clr-namespace:MasterMachineSystem.Controls"
     x:Class="MasterMachineSystem.MainWindow"
-    Style="{StaticResource MUIWindow}" Icon="icon/soft.ico"
-    Title="Universal Master Machine System" Height="680.667" Width="868.333">
+    Style="{StaticResource MUIWindow}" Icon="Images/Icon.ico"
+    Title="Universal Master Machine System" Height="680.667" Width="868.333"
+    Loaded="Load">
     <mui:MetroWindow.RightWindowCommands>
         <mui:WindowCommands>
             <Button Content="联系我们"/>
@@ -31,7 +32,7 @@
             <MenuItem Header="连接">
                 <MenuItem x:Name="menConfig" Header="配置..." Click="Config">
                     <MenuItem.Icon>
-                        <Image Source="icon/menu_config.ico"/>
+                        <Image Source="Images/menu_config.ico"/>
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator></Separator>
@@ -69,51 +70,51 @@
         <Grid HorizontalAlignment="Left" Margin="5,25,0,0" VerticalAlignment="Top">
             <Button x:Name="btnCreateProject"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Height="70"  Margin="0,0,0,0"
                     Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="新建测试计划" Click="CreateProject">
-                <Image x:Name="imgBtnCreate" Source="icon\toolbar_create.ico" />
+                <Image x:Name="imgBtnCreate" Source="Images\toolbar_create.ico" />
             </Button>
             <Button x:Name="btnOpenProject"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Height="70"  Margin="70,0,0,0"
                     Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="打开测试计划" Click="OpenProject">
-                <Image x:Name="imgBtnOpen" Source="icon\toolbar_open.ico" />
+                <Image x:Name="imgBtnOpen" Source="Images\toolbar_open.ico" />
             </Button>
             <Button x:Name="btnConfig"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Height="70"  Margin="140,0,0,0"
                     Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="配置连接信息" Click="Config">
-                <Image x:Name="imgBtnConfig" Source="icon\toolbar_config.ico" />
+                <Image x:Name="imgBtnConfig" Source="Images\toolbar_config.ico" />
             </Button>
             <Button x:Name="btnConnect"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Height="70" Margin="210,0,0,0" 
                     Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="连接" Click="Connect">
-                <Image x:Name="imgBtnConnect" Source="icon/toolbar_connect.ico" />
+                <Image x:Name="imgBtnConnect" Source="Images/toolbar_connect.ico" />
             </Button>
             <Button x:Name="btnListen"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Height="70" Margin="280,0,0,0" 
                     Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="开始监听" Click="Listen">
-                <Image x:Name="imgBtnListen" Source="icon/toolbar_start_listening.ico" />
+                <Image x:Name="imgBtnListen" Source="Images/toolbar_start_listening.ico" />
             </Button>
             <ToggleButton x:Name="btnChart"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Height="70" Margin="350,0,0,0" 
                     Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="生成图表">
-                <Image x:Name="imgBtnChart" Source="icon/toolbar_chart.ico" />
+                <Image x:Name="imgBtnChart" Source="Images/toolbar_chart.ico" />
             </ToggleButton>
             <Button x:Name="btnReport"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Height="70" Margin="420,0,0,0" 
                     Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="查看报告">
-                <Image x:Name="imgBtnReport" Source="icon/toolbar_report.ico" />
+                <Image x:Name="imgBtnReport" Source="Images/toolbar_report.ico" />
             </Button>
             <Button x:Name="btnClear"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Height="70" Margin="490,0,0,0" 
                     Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="删除记录">
-                <Image x:Name="imgBtnClear" Source="icon/toolbar_delete.ico" />
+                <Image x:Name="imgBtnClear" Source="Images/toolbar_delete.ico" />
             </Button>
             <Button x:Name="btnImport"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Height="70" Margin="560,0,0,0" 
                     Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="导入">
-                <Image x:Name="imgBtnImport" Source="icon/toolbar_import.ico" />
+                <Image x:Name="imgBtnImport" Source="Images/toolbar_import.ico" />
             </Button>
             <Button x:Name="btnExport"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Height="70" Margin="630,0,0,0" 
                     Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="导出">
-                <Image x:Name="imgBtnExport" Source="icon/toolbar_export.ico" />
+                <Image x:Name="imgBtnExport" Source="Images/toolbar_export.ico" />
             </Button>
             <Button x:Name="btnSetting"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Height="70" Margin="700,0,0,0" 
                     Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="设置">
-                <Image x:Name="imgBtnSetting" Source="icon/toolbar_setting.ico" />
+                <Image x:Name="imgBtnSetting" Source="Images/toolbar_setting.ico" />
             </Button>
             <Button x:Name="btnClose"  HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Height="70" Margin="770,0,0,0" 
                     Style="{DynamicResource MetroCircleButtonStyle}" ToolTip="退出">
-                <Image x:Name="imgBtnClose" Source="icon/toolbar_close.ico" />
+                <Image x:Name="imgBtnClose" Source="Images/toolbar_close.ico" />
             </Button>
         </Grid>
         <GroupBox Header="简单数据交互" HorizontalAlignment="Left" Height="288" Margin="5,357,0,0" VerticalAlignment="Top" Width="230">
@@ -126,11 +127,11 @@
                         <TextBox x:Name="txtSimpleSend" HorizontalAlignment="Left" Height="40" Margin="0,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="181"/>
                         <Button x:Name="btnSimpleSend" HorizontalAlignment="Left" Margin="186,8,0,0" VerticalAlignment="Top" Width="20" Height="20"
                             Style="{StaticResource CustomButton}" Click="SimpleSend">
-                            <Image Source="icon/simple_send.ico"/>
+                            <Image Source="Images/simple_send.ico"/>
                         </Button>
                         <Button x:Name="btnSimpleSendConfig" HorizontalAlignment="Left" Margin="186,30,0,0" VerticalAlignment="Top" Width="20" Height="20"
                             Style="{StaticResource CustomButton}">
-                            <Image Source="icon/simple_config.ico"/>
+                            <Image Source="Images/simple_config.ico"/>
                         </Button>
                     </Grid>
                 </GroupBox>
@@ -147,27 +148,27 @@
                           SelectionChanged="SelectPlan"/>
                 <Button x:Name="btnPlanAdd" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" Width="20" Height="20"
                         Style="{StaticResource CustomButton}" Click="PlanAdd">
-                    <Image Source="icon\plan_add.ico"/>
+                    <Image Source="Images\plan_add.ico"/>
                 </Button>
                 <Button x:Name="btnPlanDelete" HorizontalAlignment="Left" Margin="30,36,0,0" VerticalAlignment="Top" Width="20" Height="20"
                     Style="{StaticResource ResourceKey=CustomButton}" Click="PlanDelete">
-                    <Image Source="icon/plan_delete.ico"/>
+                    <Image Source="Images/plan_delete.ico"/>
                 </Button>
                 <Button x:Name="btnPlanView" HorizontalAlignment="Left" Margin="50,36,0,0" VerticalAlignment="Top" Width="20" Height="20"
                     Style="{StaticResource ResourceKey=CustomButton}">
-                    <Image Source="icon/plan_view.ico"/>
+                    <Image Source="Images/plan_view.ico"/>
                 </Button>
                 <Button x:Name="btnPlanImport" HorizontalAlignment="Left" Margin="70,36,0,0" VerticalAlignment="Top" Width="20" Height="20"
                     Style="{StaticResource ResourceKey=CustomButton}">
-                    <Image Source="icon/plan_import.ico"/>
+                    <Image Source="Images/plan_import.ico"/>
                 </Button>
                 <Button x:Name="btnPlanExport" HorizontalAlignment="Left" Margin="90,36,0,0" VerticalAlignment="Top" Width="20" Height="20"
                     Style="{StaticResource ResourceKey=CustomButton}">
-                    <Image Source="icon/plan_export.ico"/>
+                    <Image Source="Images/plan_export.ico"/>
                 </Button>
                 <ToggleButton x:Name="btnPlanBuildChart" HorizontalAlignment="Left" Margin="110,36,0,0" VerticalAlignment="Top" Width="20" Height="20"
                     Style="{StaticResource ResourceKey=CustomToggleButton}">
-                    <Image Source="icon/plan_build_chart.ico"/>
+                    <Image Source="Images/plan_build_chart.ico"/>
                 </ToggleButton>
             </Grid>
         </GroupBox>

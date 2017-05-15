@@ -12,8 +12,8 @@ namespace MasterMachineSystem.Module
 {
     public enum CommType
     {
-        COMM_TYPE_SERIAL_PORT,
-        COMM_TYPE_ETHERNET,
+        COMM_TYPE_SERIAL_PORT = 0,
+        COMM_TYPE_ETHERNET = 1,
         COMM_TYPE_USB
     }
     public enum EthernetType
@@ -67,6 +67,11 @@ namespace MasterMachineSystem.Module
     }
     public class SerialPortComm : Comm  // 串口通信类
     {
+        public string _PortName { set; get; }
+        public int _BaudRate { set; get; }
+        public string _Parity { set; get; }
+        public ushort _DataBits { set; get; }
+        public string _StopBits { set; get; }
         public override event EventHandle DataReceived;
         public SerialPort _SerialPort;
         public SerialPortComm(string PortName, int BaudRate, string Parity, ushort DataBits, string StopBits)  // 初始化
@@ -74,9 +79,11 @@ namespace MasterMachineSystem.Module
             MyType = CommType.COMM_TYPE_SERIAL_PORT;   // 通信类型
 
             _SerialPort = new SerialPort();
-            _SerialPort.PortName = PortName;
-            _SerialPort.BaudRate = BaudRate;
-            _SerialPort.DataBits = DataBits;
+            _SerialPort.PortName = _PortName = PortName;
+            _SerialPort.BaudRate = _BaudRate = BaudRate;
+            _SerialPort.DataBits = _DataBits = DataBits;
+            _Parity = Parity;
+            _StopBits = StopBits;
             switch (Parity)
             {
                 case "NONE":
@@ -199,7 +206,9 @@ namespace MasterMachineSystem.Module
     }
     public class EthernetComm : Comm  // 以太网通信类
     {
-        private EthernetType _EthernetType;
+        public EthernetType _EthernetType { set; get; }
+        public string _IPAddress { set; get; }
+        public int _Port { set; get; }
         private IPAddress _IP;
         private IPEndPoint _IPE;
         private Socket _Socket, _ServerSocket;
@@ -209,9 +218,13 @@ namespace MasterMachineSystem.Module
         public override event EventHandle DataReceived;
         public EthernetComm(string host, int port, EthernetType type)  // 初始化
         {
+
+            _IPAddress = host;
+            _Port = port;
+            _EthernetType = type;
+
             _IP = IPAddress.Parse(host);
             _IPE = new IPEndPoint(_IP, port);
-            _EthernetType = type;
             _IsConnected = false;
             _Socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         }

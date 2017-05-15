@@ -5,23 +5,25 @@
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                  xmlns:local="clr-namespace:MasterMachineSystem"
                  xmlns:mui="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                 xmlns:controls="clr-namespace:DataProcessingSystem.Controls"
                  mc:Ignorable="d"
                  Style="{StaticResource MUIDialog}"
-                 Title="配置" Height="342" Width="233">
+                 Title="配置" Height="342" Width="233"
+                 Loaded="Load">
     <Grid>
         <TabControl x:Name="tcType" HorizontalAlignment="Left" Height="310" VerticalAlignment="Top" Width="227">
             <TabItem Header="串口">
                 <Grid>
                     <Label Content="串口号：" HorizontalAlignment="Left" Margin="10,10,0,230" Width="57" Height="26"/>
-                    <ComboBox x:Name="cbSPPort" HorizontalAlignment="Left" Margin="67,10,0,0" VerticalAlignment="Top" Width="120"/>
+                    <controls:iComboBox x:Name="cbSPPort" HorizontalAlignment="Left" Margin="67,10,0,0" VerticalAlignment="Top" Width="120"/>
                     <Label Content="波特率：" HorizontalAlignment="Left" Margin="10,41,0,199" Width="57" Height="26" RenderTransformOrigin="0.474,0.077"/>
-                    <ComboBox x:Name="cbSPBaudRate" HorizontalAlignment="Left" Margin="67,41,0,0" VerticalAlignment="Top" Width="120"/>
+                    <controls:iComboBox x:Name="cbSPBaudRate" HorizontalAlignment="Left" Margin="67,41,0,0" VerticalAlignment="Top" Width="120"/>
                     <Label Content="校验位：" HorizontalAlignment="Left" Margin="10,72,0,168" Width="57" Height="26"/>
-                    <ComboBox x:Name="cbSPParity" HorizontalAlignment="Left" Margin="67,72,0,0" VerticalAlignment="Top" Width="120"/>
+                    <controls:iComboBox x:Name="cbSPParity" HorizontalAlignment="Left" Margin="67,72,0,0" VerticalAlignment="Top" Width="120"/>
                     <Label Content="数据位：" HorizontalAlignment="Left" Margin="10,103,0,137" Width="57" Height="26"/>
-                    <ComboBox x:Name="cbSPDataBits" HorizontalAlignment="Left" Margin="67,103,0,0" VerticalAlignment="Top" Width="120"/>
+                    <controls:iComboBox x:Name="cbSPDataBits" HorizontalAlignment="Left" Margin="67,103,0,0" VerticalAlignment="Top" Width="120"/>
                     <Label Content="停止位：" HorizontalAlignment="Left" Margin="10,134,0,98" Width="57"/>
-                    <ComboBox x:Name="cbSPStopBits" HorizontalAlignment="Left" Margin="67,134,0,0" VerticalAlignment="Top" Width="120"/>
+                    <controls:iComboBox x:Name="cbSPStopBits" HorizontalAlignment="Left" Margin="67,134,0,0" VerticalAlignment="Top" Width="120"/>
                     <Button x:Name="btnSPTest" Content="测试连接" HorizontalAlignment="Left" Margin="10,176,0,0" VerticalAlignment="Top" Width="87" Height="30"
                             Style="{StaticResource AccentedSquareButtonStyle}" BorderBrush="{x:Null}" Click="Test"/>
                     <Button x:Name="btnSPReset" Content="重置为默认" HorizontalAlignment="Left" Margin="122,176,0,0" VerticalAlignment="Top" Width="87" Height="30"
@@ -35,11 +37,11 @@
             <TabItem Header="以太网">
                 <Grid>
                     <Label Content="协议：" HorizontalAlignment="Left" Margin="10,10,0,234" Width="57" Height="26"/>
-                    <ComboBox x:Name="cbEthProtocol" HorizontalAlignment="Left" Margin="67,10,0,0" VerticalAlignment="Top" Width="120"/>
+                    <controls:iComboBox x:Name="cbEthProtocol" HorizontalAlignment="Left" Margin="67,10,0,0" VerticalAlignment="Top" Width="120"/>
                     <Label Content="IP：" HorizontalAlignment="Left" Margin="10,41,0,203" Width="57" Height="26"/>
                     <Label Content="端口：" HorizontalAlignment="Left" Margin="10,72,0,172" Width="57" Height="26"/>
-                    <TextBox x:Name="txtEthIP" HorizontalAlignment="Left" Height="23" Margin="67,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                    <TextBox x:Name="txtEthPort" HorizontalAlignment="Left" Height="23" Margin="67,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <controls:iTextBox x:Name="txtEthIP" HorizontalAlignment="Left" Height="23" Margin="67,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <controls:iTextBox x:Name="txtEthPort" HorizontalAlignment="Left" Height="23" Margin="67,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                     <Button x:Name="btnEthTest" Content="测试连接" HorizontalAlignment="Left" Margin="10,176,0,0" VerticalAlignment="Top" Width="87" Height="30"
                             Style="{StaticResource AccentedSquareButtonStyle}" BorderBrush="{x:Null}" Click="Test"/>
                     <Button x:Name="btnEthReset" Content="重置为默认" HorizontalAlignment="Left" Margin="122,176,0,0" VerticalAlignment="Top" Width="87" Height="30"

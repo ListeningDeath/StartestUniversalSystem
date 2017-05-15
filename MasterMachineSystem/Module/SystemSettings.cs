@@ -8,11 +8,11 @@ using System.Runtime.InteropServices;
 
 namespace MasterMachineSystem.Module
 {
-    public class INI
+    public class Ini
     {
         private string FileName;  // ini文件路径
 
-        public INI(string ConfigFileName)
+        public Ini(string ConfigFileName)
         {
             FileName = ConfigFileName;
         }
@@ -54,7 +54,7 @@ namespace MasterMachineSystem.Module
             string IniFilePath = FileName;
             StringBuilder temp = new StringBuilder(255);
             int i = GetPrivateProfileString(section, key, "", temp, 255, IniFilePath);
-            return temp.ToString();
+            return temp.ToString().Trim();
         }
 
         /// <summary>  
